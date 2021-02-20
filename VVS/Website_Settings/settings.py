@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'VVS.urls'
+ROOT_URLCONF = 'Website_Settings.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'VVS.wsgi.application'
+WSGI_APPLICATION = 'Website_Settings.wsgi.application'
 
 
 # Database
