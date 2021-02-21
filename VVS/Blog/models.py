@@ -34,17 +34,5 @@ def initKeys(script):
     access_token_secret = config.Twitter['Access_Secret']
     return script(consumer_key,consumer_secret,access_token,access_token_secret)
 
-# def initFaceBook():
-#     graph = facebook.GraphAPI(access_token="XXXXXXXX")
-#     print
-#     graph
-#     # to post to your wall
-#     graph.put_object("me", "feed", message="Posting on my wall1!")
-#     # to get your posts/feed
-#     feed = graph.get_connections("me", "feed")
-#     post = feed["data"]
-#     print
-#     post
-#     # to put comments for particular post id
-#     graph.put_object(post["id"], "comments", message="First!")
+
 

@@ -30,7 +30,7 @@ def login_page(request):
             User = authenticate(username = username,password = password)
             if User is not None: # IF User is in database, then log in, else redirect to login//do nothing
                 login(request,User)
-                return redirect('/Maps/')
+                return redirect('/Maps')
             else:
                 error(request,"User or Password not correct")
                 return redirect('/login/')
@@ -86,7 +86,7 @@ def registration_page(request):
                 user = authenticate(username = username, password = password)
                 userModel = User.objects.get(username = username)
                 login(request,userModel)
-                return redirect('/' + selected + '/')
+                return redirect('/' + selected.lower() + '/')
             
     context = {
         'form_registration': Form_Registration,
@@ -102,10 +102,10 @@ def business_page(request):
         Form_Registration = Business(request.POST)
         if Form_Registration.is_valid():
             description = Form_Registration.cleaned_data['description']
-            request.user.update(
-                email = description
-            )
-            return redirect('/Maps/')
+            # request.user.update(
+            #     email = description
+            # )
+            return redirect('/Maps')
 
     context = {
         'form_registration': Form_Registration,
@@ -121,10 +121,10 @@ def shopper_page(request):
         Form_Registration = Shopper(request.POST)
         if Form_Registration.is_valid():
             description = Form_Registration.cleaned_data['description']
-            request.user.update(
-                email = description
-            )
-            return redirect('/Maps/')
+            # request.user.update(
+            #     email = description
+            # )
+            return redirect('/Maps')
 
     context = {
         'form_registration': Form_Registration,
