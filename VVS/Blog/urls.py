@@ -8,7 +8,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', PostListView.as_view(), name='blog-home'),
+    path('',blog_views.home, name='blog-home'),
     # get post by primary key
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
 

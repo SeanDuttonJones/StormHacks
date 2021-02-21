@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
-
+from .forms import *
 # test data
 posts = [
     {
@@ -21,10 +21,17 @@ posts = [
 
 # Create your views here.
 def home(request):
-    context = {
-        'posts': posts
-    }
-    return render(request, 'home.html', context)
+    
+  
+    if request.method == 'POST': 
+        form = PostForm(request.POST, request.FILES) 
+  
+    else: 
+        form = PostForm() 
+    return render(request, 'home.html', {'form' : form}) 
+  
+
+    # return render(request, 'home.html')
 
 
 def about(request):
