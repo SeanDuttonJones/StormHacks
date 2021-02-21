@@ -10,11 +10,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('',blog_views.home, name='blog-home'),
     # get post by primary key
-    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
+    # path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
 
-    path('about/', blog_views.about, name='blog-about'),
+    # path('about/', blog_views.about, name='blog-about'),
 
-    path('post/new/', PostCreateView.as_view(), name='post-create'),
+    # path('post/new/', PostCreateView.as_view(), name='post-create'),
 
 ]
 if settings.DEBUG:
