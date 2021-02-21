@@ -1,6 +1,6 @@
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
+from crispy_forms.layout import Layout, Div, Fieldset, ButtonHolder, Submit
 
 class Login(forms.Form):
     """
@@ -16,8 +16,9 @@ class Login(forms.Form):
         self.helper.layout = Layout (
             Fieldset(
                 " ",
-                "username",
+                Div("username",
                 "password",
+                css_id="form-control")
             ),
             ButtonHolder(
                 Submit('submit','Login Data',css_class='button white'),

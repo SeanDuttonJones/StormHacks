@@ -2,7 +2,7 @@
 
 {%  load crispy_forms_tags  %}
 
-  {% block login %}
+  {% block title %}
 
   <script>
     $(document).ready(function(){
@@ -22,9 +22,57 @@
           </span> <p>Log In</p>  </a>
       </div>
 </nav>
+    <style>
+      html, body {
+        background: rgb(60,85,248) no-repeat center center fixed;
+        background: -moz-linear-gradient(320deg, rgba(60,85,248,1) 0%, rgba(62,155,255,1) 100%);
+        background: -webkit-linear-gradient(320deg, rgba(60,85,248,1) 0%, rgba(62,155,255,1) 100%);
+        background: linear-gradient(320deg, rgba(60,85,248,1) 0%, rgba(62,155,255,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3c55f8",endColorstr="#3e9bff",GradientType=1);
+      }
 
-    <div class="container" >
-      {%  crispy form_registration form_registration.helper  %}
+      .container-fluid {
+        height: 100vh;  
+      }
+
+      .vertical-align {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .vertical-align > [class^="col-"],
+      .vertical-align > [class*=" col-"] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+    
+    <div class="container-fluid" >
+      <div class="row vertical-align">
+        <div class="col-sm-12">
+          <div class="card" style="width: 20rem;">
+            <div class="card-body">
+              <h5 class="card-title">Login</h5>
+              <form class="mb-3" method="POST">
+                {% csrf_token %}
+                <!-- <div class="mb-3">
+                  <label class="form-label">Username</label>
+                  <input type="text" label="username" class="form-control">
+                </div> -->
+                <div class="mb-3">
+                  <!-- <label class="form-label">Password</label>
+                  <input type="password" label="password" class="form-control"> -->
+                  {{form_registration}}
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+              <p class="card-text text-right">Or <a href="/register/">Signup</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- {%  crispy form_registration form_registration.helper  %} -->
       <br>
       {% for message in messages %}
         <div class="modal fade" id="registerFail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -52,4 +100,4 @@
       {% endfor %}
     </div>
 
-  {% endblock login %}
+  {% endblock title %}
