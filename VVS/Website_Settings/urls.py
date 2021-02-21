@@ -20,4 +20,5 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Home.urls')),
+    path('Maps/', include('Maps.urls'))
 ]
