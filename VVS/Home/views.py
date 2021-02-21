@@ -11,7 +11,7 @@ from .forms import Register,Login,Shopper,Business
 # Create your views here.
 
 def home_page(request):
-    homeHTML = 'Home/home.html'
+    homeHTML = 'Maps/index.html'
     return render(request,homeHTML)
 
 def login_page(request):
