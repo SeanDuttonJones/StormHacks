@@ -1,0 +1,49 @@
+{% extends "Home/base.html" %}
+
+{%  block not_logged %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Log Out</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="ml-auto text-dark">
+    <a class="nav-link" href="/register/">
+      <span class="fa-stack fa-lg">
+        <i class="fas fa-user-plus"></i>
+      </span> <p> Sign Up </p> </a>
+      <a class="nav-link" href="/login/">
+        <span class="fa-stack fa-lg">
+            <i class="fas fa-sign-in-alt"></i>
+        </span> <p>Log In</p></a>
+  </div>
+</nav>
+
+<!-- <nav class="navbar navbar-dark" style="background-color: #000000;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <ul class="nav navbar-nav navbar-left pull-left">
+            <li class="nav-item">
+                <a class="nav-link" href="#"> <h1 style="font-size: large;"> <strong> Logged Out </strong>  </h1> </a></li>
+            </li>
+          </ul>
+        </div>
+        <div class="navbar-body">
+          <ul class="nav navbar-nav navbar-right pull-right">
+            <li class="nav-item">
+                <a class="nav-link" href="/login/">
+                <span class="fa-stack fa-lg">
+                    <i class="fas fa-sign-in-alt"></i>
+                </span> Log In </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register/">
+                <span class="fa-stack fa-lg">
+                    <i class="fas fa-user-plus"></i>
+                </span> Sign Up </a>
+            </li>
+          </ul>
+        </div>
+    </div>
+  </nav> -->
+{%  endblock not_logged %}
