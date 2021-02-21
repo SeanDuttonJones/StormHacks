@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Post
 
 # test data
 posts = [
@@ -27,3 +29,10 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html', {'title': 'About'})
+
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'home.html'
+    context_object_name = 'posts'
+    ordering = [-'date_poster']
