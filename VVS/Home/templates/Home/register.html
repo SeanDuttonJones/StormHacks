@@ -1,0 +1,55 @@
+{% extends "Home/base.html" %}
+
+{%  load crispy_forms_tags  %}
+
+  {% block login %}
+
+  <script>
+    $(document).ready(function(){
+        $("#registerFail").modal('show');
+    });
+  </script>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Register</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="ml-auto text-dark">
+        <a class="nav-link" href="/login/">
+          <span class="fa-stack fa-lg">
+              <i class="fas fa-sign-in-alt"></i>
+          </span> <p>Log In</p>  </a>
+      </div>
+</nav>
+
+    <div class="container" >
+      {%  crispy form_registration form_registration.helper  %}
+      <br>
+      {% for message in messages %}
+        <div class="modal fade" id="registerFail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: red; font: border-style;">ERROR</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                {{ message }}
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  {% endblock login %}
