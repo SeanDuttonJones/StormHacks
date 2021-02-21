@@ -88,6 +88,7 @@
 
         .card {
             max-height: 720px;
+            border-radius: 0;
         }
 
         .list-group {
@@ -99,24 +100,41 @@
             height: 100%;
             margin: 0;
             padding: 0;
+            background-color: white;
         }
 
         .jumbotron {
-            padding: 12rem 1rem;
-            margin-bottom: 1rem;
+            display: flex;
+            height: 100vh;
             background-color: #e9ecef;
-            background: url("http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2014/5/24/1400948179502/Workers-harvest-tea-leave-014.jpg") no-repeat center center;
+            background: url("http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2014/5/24/1400948179502/Workers-harvest-tea-leave-014.jpg") no-repeat center center fixed;
         }
 
         #title {
             color: white;
-            font-size: 100px;
+            font-size: 150px;
             font-family: 'Just Another Hand', cursive;
+        }
+
+        .container-fluid {
+            overflow: hidden;
+        }
+
+        .vertical-align {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .vertical-align > [class^="col-"],
+        .vertical-align > [class*=" col-"] {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
     </style>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Log in</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -130,12 +148,18 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
         </div>
-    </nav>
+    </nav> -->
 
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container-fluid p-0">
+        <div class="row vertical-align jumbotron">
+            <div class="col-sm-12">
+                <h1 id="title">Discover Local Fairtrade Retailers</h1>
+            </div>
+        </div>
+
+        <div class="row p-5">
             <div class="col-sm-4 pe-0">
-                <div class="card shadow p-3 mb-5 bg-body rounded">
+                <div class="card shadow p-3 mb-5 bg-body">
                     <div class="card-header">
                         <h5>Fairtrade Retailers Near You</h5>
                     </div>
@@ -151,8 +175,9 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col-sm-8 ps-0">
-                <div id="map" class="shadow p-3 mb-5 bg-body rounded"></div>
+                <div id="map" class="shadow p-3 mb-5 bg-body"></div>
             </div>
         </div>
     </div>
