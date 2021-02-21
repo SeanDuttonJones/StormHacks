@@ -27,6 +27,9 @@
                             map: map,
                             title: "Your Location"
                         });
+
+                        createCompanyMarker(map, {lat: 50.12538, lng: -122.97130}, "Whistler Chocolate",
+                                            "Whistler", "https://www.google.com/");
                     },
                     () => {
                         handleLocationError();
@@ -40,6 +43,30 @@
         function handleLocationError() {
             alert("Error: Location services has failed.");
         }
+
+        function createCompanyMarker(map, position, company_name, city, website) {
+            const cmpMarker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: company_name
+            });
+
+            const contentString =   '<div class="container">' +
+                                    '<div class="marker_company">' +
+                                    '<h4>' + company_name + '</h4>' +
+                                    '<p>City: ' + city + '</p>' +
+                                    '<a href="' + website + '" target="_blank" class="btn btn-primary" role="button">Visit Website</a>' +
+                                    '</div>' +
+                                    '</div>';
+
+            const infoWindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            cmpMarker.addListener("click", () => {
+                infoWindow.open(map, cmpMarker);
+            });
+        }
     </script>
 
     <style>
@@ -51,6 +78,10 @@
             height: 100%;
             margin: 0;
             padding: 0;
+        }
+
+        .marker_company {
+
         }
     </style>
 
