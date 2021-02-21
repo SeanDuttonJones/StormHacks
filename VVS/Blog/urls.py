@@ -17,7 +17,6 @@ from django.contrib import admin
 
 urlpatterns = [
 
-    path('about/', blog_views.about, name='Blog-about'),
     path('', PostListView.as_view(), name='Blog-home'),
     path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
