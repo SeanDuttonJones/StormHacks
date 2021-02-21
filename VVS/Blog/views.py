@@ -14,10 +14,8 @@ def home(request):
     }
     return render(request, 'Blog/home.html', context)
 
-
-def about(request):
-    return render(request, 'Blog/about.html', {'title': 'About'})
-
+def tweetContent():
+    content = request.POST.get('taskID',None)
 
 class PostListView(ListView):
     model = Post
