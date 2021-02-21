@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="media-body">
+                <a class="article-metadata" href="#"> {{ object.author }}</a>
+                <small class="text-muted">{{ object.date_objected }}</small>
+            </div>
+            <h2> class="article-title href={% url 'post-detail' post.id %}{{ object.title }} </h2>
+            <p class ="article-content"> {{ object.content }}</p>
+        </div>
+    </article>
+{% endblock %}
