@@ -2,7 +2,8 @@ from django.urls import path
 from .import views as blog_views
 from .views import (
     PostListView,
-    PostDetailView
+    PostDetailView,
+    PostCreateView
 )
 # followed tutorial: https://www.youtube.com/watch?v=qDwdMDQ8oX4&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=3
 # for Blog creation html, views and other set up for the Blog
@@ -14,15 +15,10 @@ from django.contrib import admin
 
 urlpatterns = [
 
+    path('about/', blog_views.about, name='Blog-about'),
     path('', PostListView.as_view(), name='Blog-home'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
-    # path('',blog_views.home, name='Blog-home'),
-    # path('image_upload', blog_views.home, name = 'image_upload'),
-    # get post by primary key
-
-    # path('about/', blog_views.about, name='Blog-about'),
-
-    # path('post/new/', PostCreateView.as_view(), name='post-create'),
+    path('post/new/', PostCreateView.as_view(), name='post-create'),
 
 ]
 
