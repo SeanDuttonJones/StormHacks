@@ -30,7 +30,7 @@ def login_page(request):
             User = authenticate(username = username,password = password)
             if User is not None: # IF User is in database, then log in, else redirect to login//do nothing
                 login(request,User)
-                return redirect('%s?next=%s' % (settings.LOGIN_REDIRECT_URL, request.path))
+                return redirect('/Maps/')
             else:
                 error(request,"User or Password not correct")
                 return redirect('/login/')
@@ -105,7 +105,7 @@ def business_page(request):
             request.user.update(
                 email = description
             )
-            return redirect('/')
+            return redirect('/Maps/')
 
     context = {
         'form_registration': Form_Registration,
@@ -124,7 +124,7 @@ def shopper_page(request):
             request.user.update(
                 email = description
             )
-            return redirect('/')
+            return redirect('/Maps/')
 
     context = {
         'form_registration': Form_Registration,
