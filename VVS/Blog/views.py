@@ -40,6 +40,7 @@ class PostListView(ListView):
 
 class PostCreateView(CreateView):
     model = Post
+    fields = ['title', 'content']
 
 
 class PostDetailView(DetailView):
