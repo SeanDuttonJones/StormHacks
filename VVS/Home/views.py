@@ -5,13 +5,13 @@ from Website_Settings import settings
 from django.contrib.messages import error
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from .forms import Register,Login
+from .forms import Register,Login,Shopper,Business
 
 
 # Create your views here.
 
 def home_page(request):
-    homeHTML = 'Home/index.html'
+    homeHTML = 'Home/home.html'
     return render(request,homeHTML)
 
 def login_page(request):
@@ -65,27 +65,74 @@ def registration_page(request):
             password = Form_Registration.cleaned_data['password']
             first_name = Form_Registration.cleaned_data['first_name']
             last_name = Form_Registration.cleaned_data['last_name']
+            selected = Form_Registration.cleaned_data.get("choice")
+
+            var = True # if selected == "business" else False
+            
             # Get all information from the fields
             u = User.objects.filter(username = username).exists() # checks to see if username is in database
             if u: # IF User is in database, then log in, else redirect to register//make new User object
                 error(request,"User is already in database")
                 return redirect('/register/')
             else:
+                
                 User.objects.create(
                     username = username,
                     password = make_password(password),
                     first_name = first_name,
                     last_name = last_name,
+                    is_staff = var, # False for shoppers,  True for business
                 ).save()
                 user = authenticate(username = username, password = password)
                 userModel = User.objects.get(username = username)
                 login(request,userModel)
-                return redirect('/')
+                return redirect('/' + selected + '/')
             
     context = {
         'form_registration': Form_Registration,
     }        
     return render(request,registerHTML,context)
+
+def business_page(request):
+    businessHTML = 'Home/business.html'
+
+    Form_Registration = Business()
+
+    if request.method == 'POST':
+        Form_Registration = Business(request.POST)
+        if Form_Registration.is_valid():
+            description = Form_Registration.cleaned_data['description']
+            request.user.update(
+                email = description
+            )
+            return redirect('/')
+
+    context = {
+        'form_registration': Form_Registration,
+    }        
+    return render(request,businessHTML,context)
+
+def shopper_page(request):
+    shopperHTML = 'Home/shopper.html'
+
+    Form_Registration = Shopper()
+
+    if request.method == 'POST':
+        Form_Registration = Shopper(request.POST)
+        if Form_Registration.is_valid():
+            description = Form_Registration.cleaned_data['description']
+            request.user.update(
+                email = description
+            )
+            return redirect('/')
+
+    context = {
+        'form_registration': Form_Registration,
+    }        
+    return render(request,shopperHTML,context)
+
+
+
 
 
 
