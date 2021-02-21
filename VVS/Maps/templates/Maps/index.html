@@ -1,1 +1,58 @@
 {%extends "Maps/base.html"%}
+
+{% block content %}
+    <script type="text/javascript">
+        let map;
+
+        function initMap() {
+            const location = { lat: -34.397, lng: 150.644 }
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: location,
+                zoom: 11,
+            });
+
+            if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+
+                        map.setCenter(pos);
+
+                        const marker = new google.maps.Marker({
+                            position: pos,
+                            map: map,
+                            title: "Your Location"
+                        });
+                    },
+                    () => {
+                        handleLocationError();
+                    }
+                )
+            } else {
+                handleLocationError()
+            }
+        }
+
+        function handleLocationError() {
+            alert("Error: Location services has failed.");
+        }
+    </script>
+
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <div id="map"></div>
+{% endblock %}
