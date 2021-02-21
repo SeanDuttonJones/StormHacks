@@ -26,6 +26,7 @@ def home(request):
     if request.method == 'POST': 
         form = PostForm(request.POST, request.FILES) 
         if form.is_valid(): 
+            form.Meta.model.author=request.user
             form.save() 
             return redirect('success') 
   
