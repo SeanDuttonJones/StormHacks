@@ -43,6 +43,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
+    print("simple text")
     template_name = 'Blog/post_form.html'
     fields = ['title', 'summary', 'content']
 
