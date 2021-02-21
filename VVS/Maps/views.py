@@ -1,17 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-import datetime
+import csv
+import json
 
 # Create your views here.
 def maps_page(request):
-    # mapHTML = "Maps/index.html"
-    # return render(request, mapHTML)
-    # now = datetime.datetime.now()
-    # html = "<html><body>It is now %s.</body></html>" % now
-    # return HttpResponse(html)
-    return render(request, "Maps/index.html")
+    company_data = get_company_data()
+    company_data_JSON = json.dumps(get_company_data())
+    return render(request, "Maps/index.html", {"company_data_JSON": company_data_JSON, "company_data": company_data})
 
-# def current_datetime(request):
-#     now = datetime.datetime.now()
-#     html = "<html><body>It is now %s.</body></html>" % now
-#     return HttpResponse(html)
+def get_company_data():
+    data = []
+    with open("Maps/data/company_data.csv", mode='r') as f:
+        reader = csv.DictReader(f, delimiter=',')
+        for row in reader:
+            data.append(row)
+
+    return data

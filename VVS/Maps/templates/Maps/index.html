@@ -1,6 +1,8 @@
 {%extends "Maps/base.html"%}
 
 {% block content %}
+    <script>var company_data = JSON.parse("{{company_data_JSON|escapejs}}");</script>
+
     <script type="text/javascript">
         let map;
 
@@ -28,8 +30,12 @@
                             title: "Your Location"
                         });
 
-                        createCompanyMarker(map, {lat: 50.12538, lng: -122.97130}, "Whistler Chocolate",
-                                            "Whistler", "https://www.google.com/");
+                        for(var i = 0; i < company_data.length; i++) {
+                            var company = company_data[i];
+                            var position = {lat: parseFloat(company["lat"]), lng: parseFloat(company["lng"])};
+                            console.log(company);
+                            createCompanyMarker(map, position, company["Brand"], company["City"], company["Website"]);
+                        }
                     },
                     () => {
                         handleLocationError();
@@ -54,7 +60,7 @@
             const contentString =   '<div class="container">' +
                                     '<div class="marker_company">' +
                                     '<h4>' + company_name + '</h4>' +
-                                    '<p>City: ' + city + '</p>' +
+                                    '<p>Located in ' + city + '</p>' +
                                     '<a href="' + website + '" target="_blank" class="btn btn-primary" role="button">Visit Website</a>' +
                                     '</div>' +
                                     '</div>';
@@ -67,11 +73,26 @@
                 infoWindow.open(map, cmpMarker);
             });
         }
+
+        function goto_company(lat, lng) {
+            map.setCenter({lat: lat, lng: lng});
+            map.setZoom(15);
+        }
     </script>
 
     <style>
         #map {
-            height: 100%;
+            height: 720px;
+            margin-right: 1rem;
+        }
+
+        .card {
+            max-height: 720px;
+        }
+
+        .list-group {
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
         }
 
         html, body {
@@ -80,10 +101,59 @@
             padding: 0;
         }
 
-        .marker_company {
-
+        .jumbotron {
+            padding: 12rem 1rem;
+            margin-bottom: 1rem;
+            background-color: #e9ecef;
+            background: url("http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2014/5/24/1400948179502/Workers-harvest-tea-leave-014.jpg") no-repeat center center;
         }
+
+        #title {
+            color: white;
+            font-size: 100px;
+            font-family: 'Just Another Hand', cursive;
+        }
+
     </style>
 
-    <div id="map"></div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Log in</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="ml-auto text-dark">
+            <a class="nav-link text-dark" href="/register/">
+                <span class="fa-stack fa-lg">
+                <i class="fas fa-user-plus"></i>
+                </span> <p> Sign Up </p></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4 pe-0">
+                <div class="card shadow p-3 mb-5 bg-body rounded">
+                    <div class="card-header">
+                        <h5>Fairtrade Retailers Near You</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for company in company_data %}
+                        <a href="javascript:goto_company({{company.lat}}, {{company.lng}})" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{company.Brand}}</h5>
+                            </div>
+                            <p class="mb-1">Located in {{company.City}}</p>
+                        </a>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-8 ps-0">
+                <div id="map" class="shadow p-3 mb-5 bg-body rounded"></div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
