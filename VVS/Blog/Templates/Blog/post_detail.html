@@ -1,0 +1,18 @@
+{%extends "Blog/base.html" %}
+
+{% block content %}
+    <div class="row">
+      <div class="leftcolumn">
+          <h2><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+          <h5>{{ post.summary}}</h5>
+          <small class="text-muted">{{ object.date_posted}}</small>
+
+          <p>{{ post.content }}</p>
+          {% if object.author == user%}
+         <div>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id%}">Delete</a>
+        </div>
+    {% endif %}
+    </div>
+
+{% endblock %}
