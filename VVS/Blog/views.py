@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
 from .forms import *
@@ -25,6 +25,9 @@ def home(request):
   
     if request.method == 'POST': 
         form = PostForm(request.POST, request.FILES) 
+        if form.is_valid(): 
+            form.save() 
+            return redirect('success') 
   
     else: 
         form = PostForm() 
