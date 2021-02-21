@@ -88,3 +88,4 @@ def registration_page(request):
     return render(request,registerHTML,context)
 
 
+
