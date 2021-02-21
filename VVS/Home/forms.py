@@ -71,7 +71,8 @@ class Business(forms.Form):
         self.helper.layout = Layout (
             Fieldset(
                 " ",
-                "description"
+                "description",
+            
 
             ),
             ButtonHolder(
@@ -93,7 +94,8 @@ class Shopper(forms.Form):
         self.helper.layout = Layout (
             Fieldset(
                 " ",
-                "description"
+                "description",
+                
 
             ),
             ButtonHolder(

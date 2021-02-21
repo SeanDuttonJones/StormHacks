@@ -110,7 +110,7 @@ def business_page(request):
     context = {
         'form_registration': Form_Registration,
     }        
-    return render(request,registerHTML,context)
+    return render(request,businessHTML,context)
 
 def shopper_page(request):
     shopperHTML = 'Home/shopper.html'
@@ -129,7 +129,7 @@ def shopper_page(request):
     context = {
         'form_registration': Form_Registration,
     }        
-    return render(request,registerHTML,context)
+    return render(request,shopperHTML,context)
 
 
 
