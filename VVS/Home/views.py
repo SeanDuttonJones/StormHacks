@@ -86,7 +86,7 @@ def registration_page(request):
                 user = authenticate(username = username, password = password)
                 userModel = User.objects.get(username = username)
                 login(request,userModel)
-                return redirect('/' + selected + '/')
+                return redirect('/' + selected.lower() + '/')
             
     context = {
         'form_registration': Form_Registration,
