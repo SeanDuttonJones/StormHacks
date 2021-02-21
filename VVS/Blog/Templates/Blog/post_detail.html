@@ -3,17 +3,19 @@
 {% block content %}
     <article class="media content-section">
         <div class="media-body">
+
             <div class="media-body">
-                <a class="article-metadata" href="#"> {{ object.author }}</a>
+
+                <a class="article-metadata" href="{% url 'user-posts' post.author.username %}"> {{ object.author }}</a>
                 <small class="text-muted">{{ object.date_posted}}</small>
                 {% if object.author == user%}
                     <div>
-                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{url 'post-delete' object.id}">Delete</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id%}">Delete</a>
                     </div>
                 {% endif %}
             </div>
-            <h2> class="article-title" {{ object.title }}</h2>
+            <h2 class="article-title">{{ object.title }}</h2>
             <p class ="article-content"> {{ object.content }}</p>
         </div>
     </article>
-{% endblock %}r
+{% endblock %}

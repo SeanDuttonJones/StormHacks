@@ -6,6 +6,7 @@ from django.urls import reverse
 
 class Post(models.Model):
     title = models.TextField(max_length=100)
+    summary = models.TextField(max_length=240, default="A post about fair trade")
     content = models.TextField()
     # lets us update date, and take timezone into consideration
     date_posted = models.DateField(default=timezone.now)
