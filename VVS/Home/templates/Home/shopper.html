@@ -1,10 +1,8 @@
 {% extends "Home/base.html" %}
 
-<!-- {% block navbar %}          
-  {% include 'navbar.html' with PageName='Home' %}
-{% endblock navbar %} -->
+{%  load crispy_forms_tags  %}
 
-{% block not_logged %}
+{% block login %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
@@ -44,4 +42,14 @@
 
 
 
-{% endblock navbar %}
+
+
+<div class="container" >
+    {%  crispy form_registration form_registration.helper  %}
+    <br>
+</div>
+
+
+
+
+{% endblock login %}
