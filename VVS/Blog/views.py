@@ -14,8 +14,6 @@ def home(request):
     }
     return render(request, 'Blog/home.html', context)
 
-def tweetContent():
-    content = request.POST.get('taskID',None)
 
 class PostListView(ListView):
     model = Post

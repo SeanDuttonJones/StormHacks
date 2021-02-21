@@ -25,12 +25,26 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         super(Post, self).save(*args, **kwargs)
         api = initKeys(Tweet)
-        api.send_tweet(content)
+        api.send_tweet(self.summary)
 
-    def initKeys(script):
-        consumer_key = config.Twitter['Consumer_Key']
-        consumer_secret = config.Twitter['Consumer_Secret']
-        access_token = config.Twitter['Access_Token']
-        access_token_secret = config.Twitter['Access_Secret']
-        return script(consumer_key,consumer_secret,access_token,access_token_secret)
+def initKeys(script):
+    consumer_key = config.Twitter['Consumer_Key']
+    consumer_secret = config.Twitter['Consumer_Secret']
+    access_token = config.Twitter['Access_Token']
+    access_token_secret = config.Twitter['Access_Secret']
+    return script(consumer_key,consumer_secret,access_token,access_token_secret)
+
+# def initFaceBook():
+#     graph = facebook.GraphAPI(access_token="XXXXXXXX")
+#     print
+#     graph
+#     # to post to your wall
+#     graph.put_object("me", "feed", message="Posting on my wall1!")
+#     # to get your posts/feed
+#     feed = graph.get_connections("me", "feed")
+#     post = feed["data"]
+#     print
+#     post
+#     # to put comments for particular post id
+#     graph.put_object(post["id"], "comments", message="First!")
 

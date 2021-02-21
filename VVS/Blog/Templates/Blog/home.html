@@ -1,11 +1,14 @@
 {% extends "Blog/base.html" %}
 {% block content %}
     {% for post in posts %}
-        <div class="card" style="width: 50rem;">
-            <div class="card-body">
-                <h5><a class="card-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h5>
-                <a class="card-text" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-                <p class="article-content">{{ post.summary }}</p>
+        <div class="mb-3">
+            <div class="card mb-3"  style="width: 50rem;">
+                <div class="card-body">
+                    <h3><a class="card-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
+                    <a class="card-text" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                    <small class="text-muted">{{ post.date_posted }}</small>
+                    <p class="article-content">{{ post.summary }}</p>
+                </div>
             </div>
         </div>
     {% endfor %}
