@@ -1,2 +1,2 @@
-# StormHacks
+# Insta-Trade - SFU StormHacks' "Best Beginner Hack" Award Winner
 Website made to connect local businesses who deal in fair trade with shoppers, as well as promote fair trade and redcue misconceptions around fair trade products. We have created a map for users to see where local fair trade businesses are located, as well as a instagram type blog visual where shoppers and businesses are able to post their fair trade products or fair trade they have bought, and want to show off. After one posts, they will be able to instantly post it to twitter and in the future be able to post to instagram and facebook. 
